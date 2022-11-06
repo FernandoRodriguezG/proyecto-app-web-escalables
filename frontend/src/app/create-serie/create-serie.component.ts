@@ -9,6 +9,8 @@ import { ServerService } from '../server.service';
   styleUrls: ['./create-serie.component.css']
 })
 export class CreateSerieComponent implements OnInit {
+  title:string = 'Agregar nueva serie';
+  buttonText:string = 'Guardar nueva serie';
 
   serie: Serie = {
     id:'',
@@ -27,6 +29,8 @@ export class CreateSerieComponent implements OnInit {
       this._ServerService.getServer('/serie/'+id).then(
         (data:any) => {
           console.log(data);
+          this.title = 'Editar serie';
+          this.buttonText = 'Guardar serie';
           this.serie = data;
         }, (error:any) => {
           console.log(error);
@@ -55,6 +59,9 @@ export class CreateSerieComponent implements OnInit {
           this._ServerService.putServer('/serie/update/'+id,this.serie).then(
             (data:any) => {
               console.log(data);
+              this.serie = data;
+              this.title = 'Editar serie';
+              this.buttonText = 'Guardar serie';
               
             }, (error:any) => {
               console.log(error);

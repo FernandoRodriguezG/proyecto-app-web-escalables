@@ -14,3 +14,8 @@ table {
 .completo{
   width: 100%;
 }
+
+
+.scroll {
+  overflow-x: auto;
+} 

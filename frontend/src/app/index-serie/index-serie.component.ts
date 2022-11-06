@@ -20,36 +20,35 @@ export interface UserData {
 })
 export class IndexSerieComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit','actions'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['name', 'plataforma', 'year','calificacion','actions'];
+  dataSource!: MatTableDataSource<any>;
   series:any;
 
   @ViewChild(MatPaginator) paginator :any = MatPaginator;
   @ViewChild(MatSort) sort: any =  MatSort;
 
    constructor(private router: Router, private _ServerService: ServerService) {
-    // Create 100 users
+
+    
+  }
+
+  ngAfterViewInit() {
 
     this._ServerService.getServer('/series').then(
       (data:any) => {
         console.log(data);
         this.series = data;
+        this.dataSource = new MatTableDataSource<any>(this.series);
+        this.paginator._intl.itemsPerPageLabel = 'Series por página';
+        this.paginator._intl.getRangeLabel = this.getRangeLabel;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       }, (error: any) => {
         console.log(error);
       }
       );
       
-    this.dataSource = new MatTableDataSource(this.series);
-    // Assign the data to the data source for the table to render
     
-  }
-
-  ngAfterViewInit() {
-    
-    this.paginator._intl.itemsPerPageLabel = 'Series por página';
-    this.paginator._intl.getRangeLabel = this.getRangeLabel;
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -74,7 +73,6 @@ export class IndexSerieComponent implements OnInit {
 };
 
   ngOnInit(): void {
-    
   }
 
   agregarSerie(): void{

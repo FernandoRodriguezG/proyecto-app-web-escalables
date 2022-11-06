@@ -5,6 +5,8 @@ import { MatIcon } from '@angular/material/icon';
 import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ServerService } from '../server.service';
+import { Serie } from '../serie';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 export interface UserData {
   id: string;
@@ -21,13 +23,13 @@ export interface UserData {
 export class IndexSerieComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'plataforma', 'year','calificacion','actions'];
-  dataSource!: MatTableDataSource<any>;
+  dataSource!: MatTableDataSource<Serie>;
   series:any;
 
   @ViewChild(MatPaginator) paginator :any = MatPaginator;
   @ViewChild(MatSort) sort: any =  MatSort;
 
-   constructor(private router: Router, private _ServerService: ServerService) {
+   constructor(private router: Router, private _ServerService: ServerService, public dialog: MatDialog) {
 
     
   }
@@ -38,7 +40,7 @@ export class IndexSerieComponent implements OnInit {
       (data:any) => {
         console.log(data);
         this.series = data;
-        this.dataSource = new MatTableDataSource<any>(this.series);
+        this.dataSource = new MatTableDataSource<Serie>(this.series);
         this.paginator._intl.itemsPerPageLabel = 'Series por página';
         this.paginator._intl.getRangeLabel = this.getRangeLabel;
         this.dataSource.paginator = this.paginator;
@@ -81,6 +83,30 @@ export class IndexSerieComponent implements OnInit {
 
   editSerie(id:number): void{
     this.router.navigateByUrl('/series/serie/'+id);
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(DialogAnimationsExampleDialog, {
+      width: '350px',
+      panelClass: 'custom-modalbox',
+    });
+  }
+
+}
+
+@Component({
+  selector: 'dialog-animations-example-dialog',
+  templateUrl: 'dialog-animations-example-dialog.html',
+})
+export class DialogAnimationsExampleDialog {
+  constructor(public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>) {}
+
+  onConfirm(): void {
+    // Close the dialog, return true
+    console.log('Se elimino la serie');
+    
+    this.dialogRef.close(true);
+
   }
 
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Serie } from '../serie';
+import { ServerService } from '../server.service';
 
 @Component({
   selector: 'app-create-serie',
@@ -7,9 +10,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateSerieComponent implements OnInit {
 
-  constructor() { }
+  serie: Serie = {
+    id:'',
+    nombre:'',
+    calificacion:0,
+    plataforma:'',
+    year:'',
+  }
+
+  constructor(private router: Router, private _ServerService: ServerService) { }
 
   ngOnInit(): void {
+  }
+
+  enviar(): void{
+      if(this.serie.nombre !== '' && this.serie.plataforma !== '' && this.serie.year !== ''){
+        this._ServerService.postServer('/serie/add',this.serie).then(
+          (data:any) => {
+            console.log(data);
+            
+          }, (error:any) => {
+            console.log(error);
+            
+          }
+        )
+      }
   }
 
 }

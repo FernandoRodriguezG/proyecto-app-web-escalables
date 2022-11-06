@@ -11,8 +11,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
 import { CreateSerieComponent } from './create-serie/create-serie.component';
-import { IndexSerieComponent } from './index-serie/index-serie.component';
+import { IndexSerieComponent,DialogAnimationsExampleDialog } from './index-serie/index-serie.component';
 import { DetailSerieComponent } from './detail-serie/detail-serie.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -22,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     CreateSerieComponent,
     IndexSerieComponent,
     DetailSerieComponent,
+    DialogAnimationsExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     MatSortModule,
     MatIconModule,
-    
+    MatDialogModule,
     HttpClientModule,
   ],
   providers: [],

@@ -15,14 +15,15 @@
                     <input
                     placeholder="introduce un valor"
                     class="drac-input drac-input-white drac-text-white"
+                    [(ngModel)]="serie.nombre"
                     />
                 </div>
         
                 <div class="col-xl-4 col-md-4 col-12">
                     <label for="nombre">Plataforma</label>
                     <div style="position: relative">
-                        <select class="drac-select drac-select-white">
-                          <option value="default" disabled="" selected="">Select option</option>
+                        <select class="drac-select drac-select-white" [(ngModel)]="serie.plataforma">
+                          <option value="default" disabled="" selected="">Selecciona una plataforma</option>
                           <option value="Netflix">Netflix</option>
                           <option value="Prime Video">Prime Video</option>
                           <option value="HBO Max">HBO Max</option>
@@ -52,16 +53,17 @@
                     <input
                     placeholder="introduce un valor"
                     class="drac-input drac-input-white drac-text-white"
-                    
+                    maxlength="4" minlength="4"
                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                    [(ngModel)]="serie.year"
                     />
                 </div>
         
                 <div class="col-xl-4 col-md-4 col-12">
                     <label for="nombre">Calificación</label>
                     <div style="position: relative">
-                        <select class="drac-select drac-select-white">
-                          <option value="default" disabled="" selected="">Select option</option>
+                        <select class="drac-select drac-select-white" [(ngModel)]="serie.calificacion">
+                          <option value="default" disabled="" selected="">Selecciona una calificación</option>
                           <option value="1">1</option>
                           <option value="1.5">1.5</option>
                           <option value="2">2</option>
@@ -92,7 +94,7 @@
             <div class="row mt-4">
                 <div class="col-xl-4 offset-md-8 col-md-4 offset-xl-8 offset-sm-0 col-12 d-grid gap-2">
                     <button type="button"
-                        class="drac-btn drac-bg-pink btn-block round">Guardar videojuego</button>
+                        class="drac-btn drac-bg-pink btn-block round" (click)="enviar()">Guardar videojuego</button>
                 </div>
             </div>
 

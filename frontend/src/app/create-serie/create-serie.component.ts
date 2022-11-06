@@ -24,7 +24,9 @@ export class CreateSerieComponent implements OnInit {
   }
 
   enviar(): void{
-      if(this.serie.nombre !== '' && this.serie.plataforma !== '' && this.serie.year !== ''){
+    console.log(this.serie);
+    
+      if(this.serie.nombre !== '' && this.serie.plataforma !== '' && this.serie.year !== '' && this.serie.year.length === 4){
         this._ServerService.postServer('/serie/add',this.serie).then(
           (data:any) => {
             console.log(data);
@@ -34,6 +36,9 @@ export class CreateSerieComponent implements OnInit {
             
           }
         )
+      }else{
+        console.log('false');
+        
       }
   }
 

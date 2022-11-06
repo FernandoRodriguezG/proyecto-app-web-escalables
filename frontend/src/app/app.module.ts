@@ -16,6 +16,7 @@ import { CreateSerieComponent } from './create-serie/create-serie.component';
 import { IndexSerieComponent,DialogAnimationsExampleDialog } from './index-serie/index-serie.component';
 import { DetailSerieComponent } from './detail-serie/detail-serie.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatDialogModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

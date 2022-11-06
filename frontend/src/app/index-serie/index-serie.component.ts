@@ -48,11 +48,11 @@ const NAMES: string[] = [
 
 
 @Component({
-  selector: 'app-index-videojuegos',
-  templateUrl: './index-videojuegos.component.html',
-  styleUrls: ['./index-videojuegos.component.css']
+  selector: 'app-index-serie',
+  templateUrl: './index-serie.component.html',
+  styleUrls: ['./index-serie.component.css']
 })
-export class IndexVideojuegosComponent implements OnInit {
+export class IndexSerieComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'name', 'progress', 'fruit','actions'];
   dataSource: MatTableDataSource<UserData>;
@@ -101,12 +101,12 @@ export class IndexVideojuegosComponent implements OnInit {
     
   }
 
-  agregarVideojuego(): void{
-    this.router.navigateByUrl('/videojuegos/nuevo');
+  agregarSerie(): void{
+    this.router.navigateByUrl('/series/serie');
   }
 
-  editVideojuego(id:number): void{
-    this.router.navigateByUrl('/videojuegos/nuevo/'+id);
+  editSerie(id:number): void{
+    this.router.navigateByUrl('/series/serie/'+id);
   }
 
 }
@@ -126,3 +126,4 @@ function createNewUser(id: number): UserData {
     fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
   };
 }
+

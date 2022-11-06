@@ -19,3 +19,7 @@ table {
 .scroll {
   overflow-x: auto;
 } 
+
+.butt {
+  padding: 0 !important;
+}

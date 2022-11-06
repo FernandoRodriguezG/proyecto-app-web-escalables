@@ -5,22 +5,24 @@
         <div class="drac-boc drac-card drac-bg-purple drac-p-md">
 
           <div class="row">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+
+            <div class="col-12 col-md-6 col-lg-6">
 
               <mat-label class="h3">Series que ví</mat-label>
               <input (keyup)="applyFilter($event)" #input placeholder="Buscar" class="drac-input drac-input-white drac-text-white">
           
             </div>
             
-            <div class="offset-xl-3 offset-md-3 offset-sm-0 col-sm-12 col-12 col-sm-3 col-md-3 col-xl-3 d-flex justify-content-end">
-             
-              <button class="drac-btn drac-bg-orange btn-block drac-m-sm completo" (click)="agregarSerie()">Nueva serie</button>
-
+            <div class="butt offset-xl-3 offset-md-3   col-12  col-md-3 col-xl-3 d-flex justify-content-end">
+              <button class="drac-btn drac-bg-orange drac-mx-sm drac-my-md completo" (click)="agregarSerie()">
+                Nueva serie
+              </button>
             </div>
+
           </div>
             
           
-            <div class=" mt-3 scroll">
+            <div class=" mt-2 scroll">
               <table mat-table [dataSource]="dataSource" matSort class="drac-table drac-bg-black-secondary">
             
                 <!-- Progress Column -->

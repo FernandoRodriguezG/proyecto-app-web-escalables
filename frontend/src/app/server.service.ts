@@ -5,12 +5,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ServerService {
+    URL_API = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient,) { }
 
   getServer(url: string) {
     return new Promise((resolve, reject) => {
-        this.http.get('' + url).subscribe(
+        this.http.get(this.URL_API + url).subscribe(
             (res) => {
                 resolve(res);
             }, (err) => {
@@ -22,7 +23,7 @@ export class ServerService {
 
 postServer(url: string, params: any) {
     return new Promise((resolve, reject) => {
-        this.http.post('' + url, params).subscribe(
+        this.http.post(this.URL_API + url, params).subscribe(
             (res) => {
                 resolve(res);
             }, (err) => {
@@ -34,7 +35,7 @@ postServer(url: string, params: any) {
 
 putServer(url: string, params: any) {
     return new Promise((resolve, reject) => {
-        this.http.put('' + url, params).subscribe(
+        this.http.put(this.URL_API + url, params).subscribe(
             (res) => {
                 resolve(res);
             }, (err) => {
@@ -46,7 +47,7 @@ putServer(url: string, params: any) {
 
 deleteServer(url: string) {
     return new Promise((resolve, reject) => {
-        this.http.delete('' + url).subscribe(
+        this.http.delete(this.URL_API + url).subscribe(
             (res) => {
                 resolve(res);
             }, (err) => {

@@ -14,6 +14,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { CreateSerieComponent } from './create-serie/create-serie.component';
 import { IndexSerieComponent } from './index-serie/index-serie.component';
 import { DetailSerieComponent } from './detail-serie/detail-serie.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { DetailSerieComponent } from './detail-serie/detail-serie.component';
     MatInputModule,
     MatSelectModule,
     MatSortModule,
-    MatIconModule
+    MatIconModule,
+    
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

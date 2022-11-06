@@ -85,10 +85,21 @@ export class IndexSerieComponent implements OnInit {
     this.router.navigateByUrl('/series/serie/'+id);
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string,id:string): void {
     this.dialog.open(DialogAnimationsExampleDialog, {
       width: '350px',
       panelClass: 'custom-modalbox',
+    }).afterClosed()
+    .subscribe((confirmado: Boolean) => {
+      if (confirmado) {
+        this._ServerService.deleteServer('/serie/'+id).then(
+          (data:any) => {
+            console.log(data);
+          }, (error:any) => {
+            console.log(error);
+          }
+        )
+      } 
     });
   }
 

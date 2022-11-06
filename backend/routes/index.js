@@ -59,7 +59,7 @@ router.put('/api/serie/update/:id', (req, res) => {
         calificacion: req.body.calificacion,
         year: req.body.year,
     };
-    Serie.findByIdAndUpdate(req.params.id, { $set: emp }, { new: true }, (err, data) => {
+    Serie.findByIdAndUpdate(req.params.id, { $set: ser }, { new: true }, (err, data) => {
         if(!err) {
             res.status(200).json({code: 200, message: 'Serie Updated Successfully', updateSerie: data})
         } else {

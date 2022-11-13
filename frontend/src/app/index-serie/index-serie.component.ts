@@ -29,6 +29,9 @@ export class IndexSerieComponent implements OnInit {
   @ViewChild(MatPaginator) paginator :any = MatPaginator;
   @ViewChild(MatSort) sort: any =  MatSort;
 
+  alert:boolean =false;
+  textAlert:string = '';
+
    constructor(private router: Router, private _ServerService: ServerService, public dialog: MatDialog) {
 
     
@@ -95,6 +98,25 @@ export class IndexSerieComponent implements OnInit {
         this._ServerService.deleteServer('/serie/'+id).then(
           (data:any) => {
             console.log(data);
+            this._ServerService.getServer('/series').then(
+              (data:any) => {
+                console.log(data);
+                this.series = data;
+                this.dataSource = new MatTableDataSource<Serie>(this.series);
+                this.paginator._intl.itemsPerPageLabel = 'Series por página';
+                this.paginator._intl.getRangeLabel = this.getRangeLabel;
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort;
+              }, (error: any) => {
+                console.log(error);
+              }
+              );
+
+              this.alert = true;
+              this.textAlert = "Serie eliminada correctamente";
+              setTimeout(async () => {
+                  this.alert = false;
+              }, 8000);
           }, (error:any) => {
             console.log(error);
           }

@@ -1,6 +1,9 @@
 <div class="mt-4">
 
     <div class="offset-md-1 col-md-10">
+      <div class="alert alert-primary" role="alert" *ngIf="alert">
+        {{textAlert}}
+      </div>
 
         <div class="drac-boc drac-card drac-bg-purple drac-p-md">
 
@@ -94,7 +97,7 @@
             <div class="row mt-4">
                 <div class="col-xl-4 offset-md-8 col-md-4 offset-xl-8 offset-sm-0 col-12 d-grid gap-2">
                     <button type="button"
-                        class="drac-btn drac-bg-pink btn-block round" (click)="enviar()">{{buttonText}}</button>
+                        class="drac-btn drac-bg-pink btn-block round" [disabled]="disabled" (click)="enviar()">{{buttonText}}</button>
                 </div>
             </div>
 

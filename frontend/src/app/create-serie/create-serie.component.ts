@@ -20,7 +20,11 @@ export class CreateSerieComponent implements OnInit {
     year:'',
   }
 
-  constructor(private router: Router, private _ServerService: ServerService,private _route: ActivatedRoute,) { }
+  alert:boolean =false;
+  textAlert:string = '';
+  disabled: boolean = false;
+
+  constructor(private _router: Router, private _ServerService: ServerService,private _route: ActivatedRoute,) { }
 
   ngOnInit(): void {
     const id = this._route.snapshot.paramMap.get('id');
@@ -42,14 +46,24 @@ export class CreateSerieComponent implements OnInit {
   }
 
   enviar(): void{
+    this.disabled = true;
     console.log(this.serie);
     const id = this._route.snapshot.paramMap.get('id');
       if(this.serie.nombre !== '' && this.serie.plataforma !== '' && this.serie.year !== '' && this.serie.year.length === 4){
         if(id===null){
           this._ServerService.postServer('/serie/add',this.serie).then(
             (data:any) => {
+              this.alert = true;
+              this.textAlert = "Serie añadida correctamente";
+              setTimeout(async () => {
+                  this.alert = false;
+              }, 8000);
+              setTimeout(() => {
+                this._router.navigateByUrl('series');
+                }, 2000);
               console.log(data);
-              
+              this.title = 'Editar serie';
+              this.buttonText = 'Guardar serie';
             }, (error:any) => {
               console.log(error);
               
@@ -60,8 +74,12 @@ export class CreateSerieComponent implements OnInit {
             (data:any) => {
               console.log(data);
               this.serie = data;
-              this.title = 'Editar serie';
-              this.buttonText = 'Guardar serie';
+              
+              this.alert = true;
+              this.textAlert = "Serie actualizada correctamente";
+              setTimeout(async () => {
+                  this.alert = false;
+              }, 800);
               
             }, (error:any) => {
               console.log(error);

@@ -73,7 +73,6 @@ export class CreateSerieComponent implements OnInit {
           this._ServerService.putServer('/serie/update/'+id,this.serie).then(
             (data:any) => {
               console.log(data);
-              this.serie = data;
               
               this.alert = true;
               this.textAlert = "Serie actualizada correctamente";
@@ -81,6 +80,9 @@ export class CreateSerieComponent implements OnInit {
                   this.alert = false;
               }, 800);
               
+              setTimeout(() => {
+                this._router.navigateByUrl('series');
+                }, 2000);
             }, (error:any) => {
               console.log(error);
               

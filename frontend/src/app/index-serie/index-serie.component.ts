@@ -8,13 +8,6 @@ import { ServerService } from '../server.service';
 import { Serie } from '../serie';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
-};
-
 @Component({
   selector: 'app-index-serie',
   templateUrl: './index-serie.component.html',
